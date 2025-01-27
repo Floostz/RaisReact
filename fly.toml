@@ -1,0 +1,22 @@
+app = "MyBackend"
+
+[build]
+# Specify your build settings. Use Dockerfile if you have one
+dockerfile = "Dockerfile"
+
+[env]
+PORT = "8080"
+
+[[services]]
+http_checks = []
+internal_port = 8080
+processes = ["app"]
+protocol = "tcp"
+
+  [[services.ports]]
+  handlers = ["http"]
+  port = 80
+
+  [[services.ports]]
+  handlers = ["tls", "http"]
+  port = 443
